@@ -47,7 +47,8 @@ class SmppTransmitter
      * @param string $to
      * @param string $message
      * @param null|string $from
-     * @param bool $isResponseFullBody
+     * @param bool $returnFullBody
+     *
      * @return string|array|void
      */
     public function send($to, $message, $from = null, $returnFullBody = false)

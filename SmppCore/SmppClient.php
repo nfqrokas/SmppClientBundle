@@ -49,10 +49,7 @@ class SmppClient
     public static $smsReplaceIfPresentFlag = 0x00;
     public static $smsSmDefaultMsgId = 0x00;
 
-    /**
-     * This is used to return full response body rather than just id
-     * @var bool
-     */
+    /** @var bool $returnFullBody If true return the full body, otherwise just return the ID */
     protected $returnFullBody = false;
 
     /**
