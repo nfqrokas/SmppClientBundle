@@ -53,7 +53,7 @@ class SmppClient
      * This is used to return full response body rather than just id
      * @var bool
      */
-    protected $isResponseFullBody = false;
+    protected $returnFullBody = false;
 
     /**
      * SMPP v3.4 says octect string are "not necessarily NULL terminated".
@@ -534,7 +534,7 @@ class SmppClient
         $response = $this->sendCommand(SMPP::SUBMIT_SM, $pdu);
         $body = unpack("a*msgid", $response->body);
 
-        if($this->isResponseFullBody)
+        if ($this->returnFullBody)
         {
             return $response->body;
         }
@@ -1007,18 +1007,18 @@ class SmppClient
     /**
      * @return bool
      */
-    public function isResponseFullBody()
+    public function returnFullBody()
     {
-        return $this->isResponseFullBody;
+        return $this->returnFullBody;
     }
 
     /**
-     * @param bool $isResponseFullBody
+     * @param bool $returnFullBody
      * @return SmppClient
      */
-    public function setIsResponseFullBody($isResponseFullBody)
+    public function setReturnFullBody($returnFullBody)
     {
-        $this->isResponseFullBody = $isResponseFullBody;
+        $this->returnFullBody = $returnFullBody;
         return $this;
     }
 }

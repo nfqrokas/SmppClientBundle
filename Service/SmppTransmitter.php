@@ -46,12 +46,11 @@ class SmppTransmitter
     /**
      * @param string $to
      * @param string $message
-     *
-     * @param null $from
+     * @param null|string $from
      * @param bool $isResponseFullBody
-     * @return string|array|void`
+     * @return string|array|void
      */
-    public function send($to, $message, $from = null, $isResponseFullBody = false)
+    public function send($to, $message, $from = null, $returnFullBody = false)
     {
         $message = GsmEncoder::utf8_to_gsm0338($message);
         if ($from === null)
@@ -69,9 +68,9 @@ class SmppTransmitter
         }
         $to = new SmppAddress(intval($to), SMPP::TON_INTERNATIONAL, SMPP::NPI_E164);
 
-        if($isResponseFullBody)
+        if ($returnFullBody)
         {
-            $this->smpp->setIsResponseFullBody(true);
+            $this->smpp->setReturnFullBody(true);
         }
 
         $this->openSmppConnection();
