@@ -49,8 +49,8 @@ class SmppClient
     public static $smsReplaceIfPresentFlag = 0x00;
     public static $smsSmDefaultMsgId = 0x00;
 
-    /** @var bool $eturnStatus If true return the full body, otherwise just return the ID */
-    protected $eturnStatus = false;
+    /** @var bool $returnStatus If true return the status, otherwise just return the ID */
+    protected $returnStatus = false;
 
     /**
      * SMPP v3.4 says octect string are "not necessarily NULL terminated".
@@ -1002,6 +1002,8 @@ class SmppClient
     }
 
     /**
+     * Get the return status, if true a status code will be returned, otherwise a message ID will be returned
+     *
      * @return bool
      */
     public function getReturnStatus()
@@ -1010,7 +1012,10 @@ class SmppClient
     }
 
     /**
+     * Set the return status option, set to true for a status code or false for a message id
+     *
      * @param bool $returnStatus
+     *
      * @return SmppClient
      */
     public function setReturnStatus($returnStatus)
