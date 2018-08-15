@@ -49,6 +49,9 @@ class SmppClient
     public static $smsReplaceIfPresentFlag = 0x00;
     public static $smsSmDefaultMsgId = 0x00;
 
+    /** @var bool $returnFullBody If true return the full body, otherwise just return the ID */
+    protected $returnFullBody = false;
+
     /**
      * SMPP v3.4 says octect string are "not necessarily NULL terminated".
      * Switch to toggle this feature
@@ -528,6 +531,11 @@ class SmppClient
         $response = $this->sendCommand(SMPP::SUBMIT_SM, $pdu);
         $body = unpack("a*msgid", $response->body);
 
+        if ($this->returnFullBody)
+        {
+            return $response->body;
+        }
+
         return $body['msgid'];
     }
 
@@ -991,5 +999,23 @@ class SmppClient
         }
 
         return $tag;
+    }
+
+    /**
+     * @return bool
+     */
+    public function returnFullBody()
+    {
+        return $this->returnFullBody;
+    }
+
+    /**
+     * @param bool $returnFullBody
+     * @return SmppClient
+     */
+    public function setReturnFullBody($returnFullBody)
+    {
+        $this->returnFullBody = $returnFullBody;
+        return $this;
     }
 }
