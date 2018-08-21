@@ -395,7 +395,7 @@ class SmppClient
         // Figure out if we need to do CSMS, since it will affect our PDU
         if ($msgLength > $singleSmsOctetLimit) {
             $doCsms = true;
-            if (!self::$csmsMethod != SmppClient::CSMS_PAYLOAD) {
+            if (self::$csmsMethod != SmppClient::CSMS_PAYLOAD) {
                 $parts = $this->splitMessageString($message, $csmsSplit, $dataCoding);
                 $shortMessage = reset($parts);
                 $csmsReference = $this->getCsmsReference();
