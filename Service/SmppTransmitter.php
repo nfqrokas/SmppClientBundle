@@ -60,6 +60,21 @@ class SmppTransmitter
         return $messageId;
     }
 
+    public function setFinalDeliveryReceipt($type)
+    {
+        $this->smpp->setFinalDeliveryReceipt($type);
+    }
+
+    public function setSMEDeliveryReceipt($type)
+    {
+        $this->smpp->setSMEDeliveryReceipt($type);
+    }
+
+    public function setIntermediateDeliveryReceipt($type)
+    {
+        $this->smpp->setIntermediateDeliveryReceipt($type);
+    }
+
     private function openSmppConnection()
     {
         $this->transport = new SocketTransport($this->transportParamters[0], $this->transportParamters[1]);

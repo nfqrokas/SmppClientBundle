@@ -33,6 +33,17 @@ use RuntimeException;
  */
 class SmppClient
 {
+    // Delivery Receipt options
+    const DR_FINAL_NONE = 0;
+    const DR_FINAL_ALL  = 1;
+    const DR_FINAL_FAILURE = 2;
+    const DR_SME_NONE = 0;
+    const DR_SME_DELIVERY = 4;
+    const DR_SME_MANUAL = 8;
+    const DR_SME_BOTH = 12;
+    const DR_INTERMEDIATE_NONE = 0;
+    const DR_INTERMEDIATE_ON = 16;
+
     // SMPP bind parameters
     public static $systemType = "WWW";
     public static $interfaceVersion = 0x34;
@@ -45,9 +56,21 @@ class SmppClient
     public static $smsEsmClass = 0x00;
     public static $smsProtocolId = 0x00;
     public static $smsPriorityFlag = 0x00;
-    public static $smsRegisteredDeliveryFlag = 0x00;
     public static $smsReplaceIfPresentFlag = 0x00;
     public static $smsSmDefaultMsgId = 0x00;
+
+    /** @var mixed $deliveryReceipt Setting for delivery receipts */
+    protected $smsRegisteredDeliveryFlag = 0x00;
+
+    /** @var string $deliveryReceiptFinal Final delivery receipt setting */
+    protected $deliveryReceiptFinal = 'NONE';
+
+    /** @var string $deliveryReceiptSME SME delivery receipt setting */
+    protected $deliveryReceiptSME = 'NONE';
+
+    /** @var string $deliveryReceiptIntermediate Intermediate delivery receipt setting */
+    protected $deliveryReceiptIntermediate = 'NONE';
+
 
     /**
      * SMPP v3.4 says octect string are "not necessarily NULL terminated".
@@ -495,6 +518,8 @@ class SmppClient
             $esmClass = self::$smsEsmClass;
         }
 
+        $this->generateDeliveryReceiptBit();
+
         // Construct PDU with mandatory fields
         $pdu = pack('a1cca'.(strlen($source->value)+1).'cca'.(strlen($destination->value)+1).'ccc'.($scheduleDeliveryTime ? 'a16x' : 'a1').($validityPeriod ? 'a16x' : 'a1').'ccccca'.(strlen($shortMessage)+(self::$smsNullTerminateOctetStrings ? 1 : 0)),
             self::$smsServiceType,
@@ -509,7 +534,7 @@ class SmppClient
             $priority,
             $scheduleDeliveryTime,
             $validityPeriod,
-            self::$smsRegisteredDeliveryFlag,
+            $this->smsRegisteredDeliveryFlag,
             self::$smsReplaceIfPresentFlag,
             $dataCoding,
             self::$smsSmDefaultMsgId,
@@ -991,5 +1016,38 @@ class SmppClient
         }
 
         return $tag;
+    }
+
+    public function setFinalDeliveryReceipt($type)
+    {
+        if (in_array($type, array('none', 'all', 'failure')))
+        {
+            $this->deliveryReceiptFinal = strtoupper($type);
+        }
+    }
+
+    public function setSMEDeliveryReceipt($type)
+    {
+        if (in_array($type, array('none', 'delivery', 'manual', 'both')))
+        {
+            $this->deliveryReceiptSME = strtoupper($type);
+        }
+    }
+
+    public function setIntermediateDeliveryReceipt($type)
+    {
+        if (in_array($type, array('none', 'on')))
+        {
+            $this->deliveryReceiptIntermediate = strtoupper($type);
+        }
+    }
+
+    public function generateDeliveryReceiptBit()
+    {
+        $setting = constant('self::DR_FINAL_'.$this->deliveryReceiptFinal) | constant('self::DR_SME_'.$this->deliveryReceiptSME) | constant('self::DR_INTERMEDIATE_'.$this->deliveryReceiptIntermediate);
+
+        $this->smsRegisteredDeliveryFlag = $setting;
+
+        return $setting;
     }
 }
