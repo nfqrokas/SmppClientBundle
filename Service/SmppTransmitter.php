@@ -62,16 +62,19 @@ class SmppTransmitter
 
     public function setFinalDeliveryReceipt($type)
     {
+        if (!$this->smpp) $this->openSmppConnection();
         $this->smpp->setFinalDeliveryReceipt($type);
     }
 
     public function setSMEDeliveryReceipt($type)
     {
+        if (!$this->smpp) $this->openSmppConnection();
         $this->smpp->setSMEDeliveryReceipt($type);
     }
 
     public function setIntermediateDeliveryReceipt($type)
     {
+        if (!$this->smpp) $this->openSmppConnection();
         $this->smpp->setIntermediateDeliveryReceipt($type);
     }
 
