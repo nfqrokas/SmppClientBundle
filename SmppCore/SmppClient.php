@@ -1,12 +1,12 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
-use Kronas\SmppClientBundle\Exception\SmppException;
-use Kronas\SmppClientBundle\Transport\SocketTransport;
-use Kronas\SmppClientBundle\SMPP;
-use Kronas\SmppClientBundle\SmppCore\SmppTag;
-use Kronas\SmppClientBundle\Transport\TransportInterface;
+use Nibynool\SmppClientBundle\Exception\SmppException;
+use Nibynool\SmppClientBundle\Transport\SocketTransport;
+use Nibynool\SmppClientBundle\SMPP;
+use Nibynool\SmppClientBundle\SmppCore\SmppTag;
+use Nibynool\SmppClientBundle\Transport\TransportInterface;
 use RuntimeException;
 
 /**

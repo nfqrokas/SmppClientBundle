@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
 /**
  * Primitive class to represent SMPP optional params, also know as TLV (Tag-Length-Value) params

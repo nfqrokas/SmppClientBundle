@@ -1,14 +1,18 @@
 {
-    "name": "kronas/smpp-client-bundle",
+    "name": "nibynool/smpp-client-bundle",
     "type": "symfony-bundle",
     "description": "Symfony SMPP Client Bundle",
     "keywords": ["Send SMS via SMPP"],
-    "homepage": "https://github.com/kronas/SmppClientBundle",
+    "homepage": "https://github.com/nibynool/SmppClientBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Kronas",
             "email": "kronas.sw@gmail.com"
+        },
+        {
+            "name": "Michael Lambert",
+            "email": "michael@alphageek.com.au"
         }
     ],
     "minimum-stability": "dev",
@@ -20,9 +24,9 @@
         "symfony/yaml": ">=2.1"
     },
     "autoload": {
-        "psr-0": { "Kronas\\SmppClientBundle": "" }
+        "psr-0": { "Nibynool\\SmppClientBundle": "" }
     },
-    "target-dir": "Kronas/SmppClientBundle",
+    "target-dir": "Nibynool/SmppClientBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.1.x-dev"

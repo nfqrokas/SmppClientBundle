@@ -1,11 +1,11 @@
 <?php
 
-namespace Kronas\SmppClientBundle\Transport;
+namespace Nibynool\SmppClientBundle\Transport;
 
 use \ArrayIterator;
 use \InvalidArgumentException;
 
-use Kronas\SmppClientBundle\Exception\SocketTransportException;
+use Nibynool\SmppClientBundle\Exception\SocketTransportException;
 
 /**
  * TCP Socket Transport for use with multiple protocols.
@@ -419,7 +419,7 @@ class SocketTransport implements TransportInterface
      * @param integer $length
      *
      * @return null|string
-     * @throws \Kronas\SmppClientBundle\Exception\SocketTransportException
+     * @throws \Nibynool\SmppClientBundle\Exception\SocketTransportException
      */
     public function readAll($length)
     {
@@ -465,7 +465,7 @@ class SocketTransport implements TransportInterface
      * @param mixed   $buffer
      * @param integer $length
      *
-     * @throws \Kronas\SmppClientBundle\Exception\SocketTransportException
+     * @throws \Nibynool\SmppClientBundle\Exception\SocketTransportException
      */
     public function write($buffer, $length)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\DependencyInjection;
+namespace Nibynool\SmppClientBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class KronasSmppClientExtension extends Extension
+class NibynoolSmppClientExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -26,7 +26,7 @@ class KronasSmppClientExtension extends Extension
         $loader->load('services.yml');
 
         foreach ($config as $key => $value) {
-            $container->setParameter('kronas_smpp_client.'.$key, $value);
+            $container->setParameter('nibynool_smpp_client.'.$key, $value);
         }
     }
 }

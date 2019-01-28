@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\Transport;
+namespace Nibynool\SmppClientBundle\Transport;
 
 /**
  * Interface TransportInterface

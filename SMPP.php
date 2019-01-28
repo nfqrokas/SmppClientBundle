@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle;
+namespace Nibynool\SmppClientBundle;
 
 /**
  * Numerous constants for SMPP v3.4

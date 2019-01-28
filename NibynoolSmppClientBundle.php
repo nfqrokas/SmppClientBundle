@@ -1,15 +1,15 @@
 <?php
 
-namespace Kronas\SmppClientBundle;
+namespace NibyNool\SmppClientBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class KronasSmppClientBundle
+ * Class NibynoolSmppClientBundle
  *
- * @package KronasSmppClientBundle
+ * @package NibynoolSmppClientBundle
  */
-class KronasSmppClientBundle extends Bundle
+class NibynoolSmppClientBundle extends Bundle
 {
 
 }

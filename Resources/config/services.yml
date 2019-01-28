@@ -1,10 +1,10 @@
 services:
-    kronas_smpp_client.transmitter:
-        class: Kronas\SmppClientBundle\Service\SmppTransmitter
+    nibynool_smpp_client.transmitter:
+        class: Nibynool\SmppClientBundle\Service\SmppTransmitter
         arguments:
-            - [['%kronas_smpp_client.host%'], '%kronas_smpp_client.port%', '%kronas_smpp_client.socket_timeout%']
-            - '%kronas_smpp_client.login%'
-            - '%kronas_smpp_client.password%'
-            - '%kronas_smpp_client.signature%'
-            - '%kronas_smpp_client.debug%'
-            - '%kronas_smpp_client.null_terminate%'
+            - [['%nibynool_smpp_client.host%'], '%nibynool_smpp_client.port%', '%nibynool_smpp_client.socket_timeout%']
+            - '%nibynool_smpp_client.login%'
+            - '%nibynool_smpp_client.password%'
+            - '%nibynool_smpp_client.signature%'
+            - '%nibynool_smpp_client.debug%'
+            - '%nibynool_smpp_client.null_terminate%'

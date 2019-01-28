@@ -1,8 +1,8 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
-use Kronas\SmppClientBundle\SMPP;
+use Nibynool\SmppClientBundle\SMPP;
 
 /**
  * Primitive class for encapsulating smpp addresses

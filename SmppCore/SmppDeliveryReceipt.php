@@ -1,8 +1,8 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
-use Kronas\SmppClientBundle\SmppCore\SmppSms;
+use Nibynool\SmppClientBundle\SmppCore\SmppSms;
 
 /**
  * An extension of a SMS, with data embedded into the message part of the SMS.

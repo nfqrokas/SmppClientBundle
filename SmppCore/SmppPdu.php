@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
 /**
  * Primitive class for encapsulating PDUs

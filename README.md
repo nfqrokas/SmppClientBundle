@@ -10,7 +10,7 @@ Installation
 Add to composer.json
 
     "require": {
-        "nibynool/smpp-client-bundle": "^1.1.0"
+        "nibynool/smpp-client-bundle": "^1.2.0"
     }
 
 Add to AppKernel.php

@@ -1,8 +1,8 @@
 <?php
 
-namespace Kronas\SmppClientBundle\SmppCore;
+namespace Nibynool\SmppClientBundle\SmppCore;
 
-use Kronas\SmppClientBundle\SmppCore\SmppAddress;
+use Nibynool\SmppClientBundle\SmppCore\SmppAddress;
 
 /**
  * Primitive type to represent SMSes
