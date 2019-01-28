@@ -46,10 +46,11 @@ class SmppTransmitter
     /**
      * @param string $to
      * @param string $message
+     * @param bool $returnStatus
      *
-     * @return string|void`
+     * @return string|array|void
      */
-    public function send($to, $message, $from = null)
+    public function send($to, $message, $from = null, $returnStatus = false)
     {
         $message = GsmEncoder::utf8_to_gsm0338($message);
         $from = $this->signature;
@@ -66,10 +67,14 @@ class SmppTransmitter
         $to = new SmppAddress(intval($to), SMPP::TON_INTERNATIONAL, SMPP::NPI_E164);
 
         $this->openSmppConnection();
-        $messageId = $this->smpp->sendSMS($from, $to, $message);
+        if ($returnStatus)
+        {
+            $this->smpp->setReturnStatus(true);
+        }
+        $response = $this->smpp->sendSMS($from, $to, $message);
         $this->closeSmppConnection();
 
-        return $messageId;
+        return $response;
     }
 
     private function openSmppConnection()
@@ -92,5 +97,10 @@ class SmppTransmitter
     {
         $this->smpp->close();
         $this->transport->close();
+    }
+
+    public function getLastStatusCode()
+    {
+        return $this->smpp->getLastStatus();
     }
 } 

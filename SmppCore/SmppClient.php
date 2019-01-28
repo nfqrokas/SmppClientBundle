@@ -49,6 +49,9 @@ class SmppClient
     public static $smsReplaceIfPresentFlag = 0x00;
     public static $smsSmDefaultMsgId = 0x00;
 
+    /** @var bool $returnStatus If true return the status, otherwise just return the ID */
+    protected $returnStatus = false;
+
     /**
      * SMPP v3.4 says octect string are "not necessarily NULL terminated".
      * Switch to toggle this feature
@@ -90,6 +93,8 @@ class SmppClient
 
     protected $sequenceNumber;
     protected $sarMsgRefNum;
+
+    protected $lastStatus;
 
     /**
      * Construct the SMPP class
@@ -527,6 +532,12 @@ class SmppClient
 
         $response = $this->sendCommand(SMPP::SUBMIT_SM, $pdu);
         $body = unpack("a*msgid", $response->body);
+
+        $this->lastStatus = $response->status;
+        if ($this->getReturnStatus())
+        {
+            return $this->lastStatus;
+        }
 
         return $body['msgid'];
     }
@@ -991,5 +1002,33 @@ class SmppClient
         }
 
         return $tag;
+    }
+
+    /**
+     * Get the return status, if true a status code will be returned, otherwise a message ID will be returned
+     *
+     * @return bool
+     */
+    public function getReturnStatus()
+    {
+        return $this->returnStatus;
+    }
+
+    /**
+     * Set the return status option, set to true for a status code or false for a message id
+     *
+     * @param bool $returnStatus
+     *
+     * @return SmppClient
+     */
+    public function setReturnStatus($returnStatus)
+    {
+        $this->returnStatus = $returnStatus;
+        return $this;
+    }
+
+    public function getLastStatus()
+    {
+        return $this->lastStatus;
     }
 }
