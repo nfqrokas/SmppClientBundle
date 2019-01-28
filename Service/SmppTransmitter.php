@@ -19,6 +19,7 @@ class SmppTransmitter
     private $password;
     private $signature;
     private $debug;
+    private $nullTerminate;
 
     /** @var TransportInterface */
     private $transport;
@@ -32,13 +33,14 @@ class SmppTransmitter
      * @param string $signature
      * @param array  $debug
      */
-    public function __construct(array $transportParamters, $login, $password, $signature, array $debug)
+    public function __construct(array $transportParamters, $login, $password, $signature, array $debug, $nullTerminate)
     {
         $this->transportParamters = $transportParamters;
         $this->login = $login;
         $this->password = $password;
         $this->signature = $signature;
         $this->debug = $debug;
+        $this->nullTerminate = $nullTerminate;
     }
 
     /**
@@ -66,6 +68,8 @@ class SmppTransmitter
         $this->transport->setSendTimeout($this->transportParamters[2]);
 
         $this->smpp = new SmppClient($this->transport);
+
+        $this->smpp->smsNullTerminateOctetStrings = $this->nullTerminate;
 
         $this->transport->debug = $this->debug['transport'];
         $this->smpp->debug = $this->debug['smpp'];

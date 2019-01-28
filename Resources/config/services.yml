@@ -7,3 +7,4 @@ services:
             - '%kronas_smpp_client.password%'
             - '%kronas_smpp_client.signature%'
             - '%kronas_smpp_client.debug%'
+            - '%kronas_smpp_client.null_terminate%'
