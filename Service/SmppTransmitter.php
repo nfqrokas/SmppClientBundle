@@ -5,6 +5,7 @@ namespace Kronas\SmppClientBundle\Service;
 use Kronas\SmppClientBundle\Encoder\GsmEncoder;
 use Kronas\SmppClientBundle\SMPP;
 use Kronas\SmppClientBundle\SmppCore\SmppAddress;
+use Kronas\SmppClientBundle\SmppCore\SmppTag;
 use Kronas\SmppClientBundle\Transport\SocketTransport;
 use Kronas\SmppClientBundle\Transport\TransportInterface;
 use Kronas\SmppClientBundle\SmppCore\SmppClient;
@@ -46,11 +47,13 @@ class SmppTransmitter
     /**
      * @param string $to
      * @param string $message
+     * @param string $from
      * @param bool $returnStatus
+     * @param null|SmppTag[] $tags
      *
      * @return string|array|void
      */
-    public function send($to, $message, $from = null, $returnStatus = false)
+    public function send($to, $message, $from = null, $returnStatus = false, $tags = null)
     {
         $message = GsmEncoder::utf8_to_gsm0338($message);
         $from = $this->signature;
@@ -71,7 +74,7 @@ class SmppTransmitter
         {
             $this->smpp->setReturnStatus(true);
         }
-        $response = $this->smpp->sendSMS($from, $to, $message);
+        $response = $this->smpp->sendSMS($from, $to, $message, $tags);
         $this->closeSmppConnection();
 
         return $response;
