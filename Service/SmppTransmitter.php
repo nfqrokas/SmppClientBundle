@@ -52,9 +52,12 @@ class SmppTransmitter
     public function send($to, $message, $from = null)
     {
         $message = GsmEncoder::utf8_to_gsm0338($message);
-        if ($from === null)
+        $from = $this->signature;
+
+        if (is_numeric($from))
         {
-            $from = new SmppAddress($this->signature, SMPP::TON_ALPHANUMERIC);
+            $from = new SmppAddress(intval($from), SMPP::TON_INTERNATIONAL, SMPP::NPI_E164);
+
         }
         else
         {
