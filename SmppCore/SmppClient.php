@@ -419,7 +419,7 @@ class SmppClient
         // Figure out if we need to do CSMS, since it will affect our PDU
         if ($msgLength > $singleSmsOctetLimit) {
             $doCsms = true;
-            if (!self::$csmsMethod != SmppClient::CSMS_PAYLOAD) {
+            if (self::$csmsMethod != SmppClient::CSMS_PAYLOAD) {
                 $parts = $this->splitMessageString($message, $csmsSplit, $dataCoding);
                 $shortMessage = reset($parts);
                 $csmsReference = $this->getCsmsReference();
@@ -557,10 +557,9 @@ class SmppClient
         $response = $this->sendCommand(SMPP::SUBMIT_SM, $pdu);
         $body = unpack("a*msgid", $response->body);
 
-        $this->lastStatus = $response->status;
         if ($this->getReturnStatus())
         {
-            return $this->lastStatus;
+            return $response->status;
         }
 
         return $body['msgid'];
@@ -1028,7 +1027,6 @@ class SmppClient
         return $tag;
     }
 
-<<<<<<< HEAD
     /**
      * Get the return status, if true a status code will be returned, otherwise a message ID will be returned
      *
@@ -1050,11 +1048,6 @@ class SmppClient
     {
         $this->returnStatus = $returnStatus;
         return $this;
-    }
-
-    public function getLastStatus()
-    {
-        return $this->lastStatus;
     }
 
     public function setFinalDeliveryReceipt($type)
