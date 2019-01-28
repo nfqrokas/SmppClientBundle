@@ -1,7 +1,7 @@
 SmppClientBundle
 ================
 
-PHP 5 based SMPP client bundle for Symfony2. Forked from https://github.com/onlinecity/php-smpp
+PHP 5 based SMPP client bundle for Symfony2. Forked from https://github.com/kronas/SmppClientBundle, which in turn was forked from https://github.com/onlinecity/php-smpp
 
 For now, it only sends messages.. trasmitter mode
 
@@ -10,7 +10,7 @@ Installation
 Add to composer.json
 
     "require": {
-        "kronas/smpp-client-bundle": "1.0.0-dev"
+        "nibynool/smpp-client-bundle": "^1.1.0"
     }
 
 Add to AppKernel.php
@@ -19,7 +19,7 @@ Add to AppKernel.php
     {
         $bundles = array(
             // ...
-            new Kronas\SmppClientBundle\KronasSmppClientBundle(),
+            new Nibynool\SmppClientBundle\NibynoolSmppClientBundle(),
         );
 
         return $bundles;
@@ -27,19 +27,19 @@ Add to AppKernel.php
 
 Add to config.yml
 
-    kronas_smpp_client:
+    nibynool_smpp_client:
         host: %smpp_host%
         port: %smpp_port%
         login: %smpp_login%
         password: %smpp_password%
         signature: %smpp_signature%
 
-[More configuration parameters](https://github.com/kronas/SmppClientBundle/blob/master/Resources/doc/configuration.md)
+[More configuration parameters](https://github.com/nibynool/SmppClientBundle/blob/master/Resources/doc/configuration.md)
 
 Usage
 -----
 
-    $smpp = $this->get('kronas_smpp_client.transmitter');
+    $smpp = $this->get('nibynool_smpp_client.transmitter');
 
     $smpp->send($phone_number, $message);
 
@@ -50,6 +50,6 @@ Usage
 License
 -------
 
-This bundle is under the [MIT license](https://github.com/kronas/SmppClientBundle/blob/master/Resources/meta/LICENSE). See the complete license in the bundle:
+This bundle is under the [MIT license](https://github.com/nibynool/SmppClientBundle/blob/master/Resources/meta/LICENSE). See the complete license in the bundle:
 
     Resources/meta/LICENSE
