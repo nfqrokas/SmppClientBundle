@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\DependencyInjection;
+namespace Nibynool\SmppClientBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('kronas_smpp_client');
+        $rootNode = $treeBuilder->root('nibynool_smpp_client');
 
         $rootNode
             ->children()
