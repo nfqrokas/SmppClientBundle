@@ -1,6 +1,6 @@
 <?php
 
-namespace Kronas\SmppClientBundle\Exception;
+namespace Nibynool\SmppClientBundle\Exception;
 
 /**
  * Socket Transport Exception
