@@ -1,6 +1,6 @@
 <?php
 
-namespace NibyNool\SmppClientBundle;
+namespace Nibynool\SmppClientBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
