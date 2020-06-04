@@ -1,14 +1,14 @@
 <?php
 
-namespace Kronas\SmppClientBundle\Service;
+namespace Nibynool\SmppClientBundle\Service;
 
-use Kronas\SmppClientBundle\Encoder\GsmEncoder;
-use Kronas\SmppClientBundle\SMPP;
-use Kronas\SmppClientBundle\SmppCore\SmppAddress;
-use Kronas\SmppClientBundle\SmppCore\SmppTag;
-use Kronas\SmppClientBundle\Transport\SocketTransport;
-use Kronas\SmppClientBundle\Transport\TransportInterface;
-use Kronas\SmppClientBundle\SmppCore\SmppClient;
+use Nibynool\SmppClientBundle\Encoder\GsmEncoder;
+use Nibynool\SmppClientBundle\SMPP;
+use Nibynool\SmppClientBundle\SmppCore\SmppAddress;
+use Nibynool\SmppClientBundle\SmppCore\SmppTag;
+use Nibynool\SmppClientBundle\Transport\SocketTransport;
+use Nibynool\SmppClientBundle\Transport\TransportInterface;
+use Nibynool\SmppClientBundle\SmppCore\SmppClient;
 
 /**
  * Class SmppWrapper
