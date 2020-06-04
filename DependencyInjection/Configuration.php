@@ -17,8 +17,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('nibynool_smpp_client');
+        $treeBuilder = new TreeBuilder('nibynool_smpp_client');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
