@@ -50,12 +50,18 @@ class SmppTransmitter
      * @param string $from
      * @param bool $returnStatus
      * @param null|SmppTag[] $tags
+     * @param int $dataCoding
      *
      * @return string|array|void
      */
-    public function send($to, $message, $from = null, $returnStatus = false, $tags = null)
+    public function send($to, $message, $from = null, $returnStatus = false, $tags = null, $dataCoding = SMPP::DATA_CODING_DEFAULT)
     {
-        $message = GsmEncoder::utf8_to_gsm0338($message);
+        if ($dataCoding === SMPP::DATA_CODING_UCS2) {
+            $message = iconv('utf-8', "UTF-16BE", $message);
+        } else {
+            $message = GsmEncoder::utf8_to_gsm0338($message);
+        }
+        
         if ($from === null)
         {
             $from = $this->signature;
@@ -76,7 +82,7 @@ class SmppTransmitter
         {
             $this->smpp->setReturnStatus(true);
         }
-        $response = $this->smpp->sendSMS($from, $to, $message, $tags);
+        $response = $this->smpp->sendSMS($from, $to, $message, $tags, $dataCoding);
         $this->closeSmppConnection();
 
         return $response;
